@@ -1,0 +1,10 @@
+/*
+ * $projectDir/settings.gradle
+ *
+ * Applications using Jython.
+ */
+
+rootProject.name = 'demo-jython-slim-gradle'
+
+include('app')          // A trivial application
+include('cli')          // Run the Jython command line

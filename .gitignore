@@ -1,0 +1,22 @@
+# .gitignore: things not to put under source control
+
+# Ignore Gradle-specific directories
+.gradle
+build
+
+# Droppings of various tools, not for the record
+*.class
+*.log
+*.pyc
+*.pyd
+*.pyo
+*.orig
+*.rej
+*.tmp
+\#*
+*~
+
+# Places and extensions I use for non-SCM-able scraps
+/scraps/
+/temp/
+*.saved

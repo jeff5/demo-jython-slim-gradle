@@ -1,0 +1,9 @@
+# Set the default behaviour, in case people don't have core.autocrlf set.
+* text=input eol=lf
+
+# These are explicitly windows files and should use crlf
+*.bat           text eol=crlf
+
+# These files are truly binary and should not be modified.
+#
+#*.jar binary

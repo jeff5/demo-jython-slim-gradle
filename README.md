@@ -57,14 +57,15 @@ by the JVM during start-up.
 Some modules are not added to the graph because
 their packages are referenced dynamically.
 The declared dependencies are added to the module path by the build,
-but surprisingly this does not get them into the module graph.
-To make available the full set available we use the option
+but surprisingly this does not get them into the module graph,
+so they are missing at run-time.
+To make available the full set available at run-time we use the option
 `--add-modules ALL-MODULE-PATH` on the Java command.
 
 The project shows how to take care of this in the build script `build.gradle`.
 By varying the JVM options there,
 you can see module resolution take place (add the `--show-module-resolution` option),
-and watch it fail (suppress the `--add-modules`). 
+or watch it fail (suppress the `--add-modules` option). 
 
 
 ## How to Build the Project
@@ -97,7 +98,8 @@ and created a launch script you can run with:
 PS demo-jython-slim-gradle> .\app\build\install\app\bin\app
 42
 ```
-You can run the application directly with Gradle:
+If you think the word `app` appears too many times in this command,
+you can run the application directly with Gradle:
 ```
 PS demo-jython-slim-gradle> .\gradlew --console=plain  app:run
 ...
@@ -109,7 +111,7 @@ and "install" them elsewhere to run any time you need 42 printed on the console.
 You can also ask for the contents as a zip or tar file.
 
 The install directory has two subdirectories.
-`bin` as we've seen contains the launch cript.
+`bin` as we've seen contains the launch script.
 `lib` contains the application JAR, the Jython JAR,
 and everything they depend on that the JDK doesn't supply.
 

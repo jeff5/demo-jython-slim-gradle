@@ -27,9 +27,6 @@ jobs:
       - name: Validation
         uses: gradle/actions/wrapper-validation@v4
 
-      - name: Assemble the project
-        run: ./gradlew assemble
-
       - name: Smoke test with Gradle
         run: ./gradlew --no-daemon app:run
 

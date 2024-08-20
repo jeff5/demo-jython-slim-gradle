@@ -1,6 +1,6 @@
 # Using Jython 2 in a Modular Project with Gradle
 
-Since v2.7.4, Jython has supported The Java module system,
+Since v2.7.4, Jython has supported the Java Platform Module System (JPMS),
 and since v2.7.2 (experimentally at first)
 it has provided a "slim" JAR as an alternative to the
 "standalone" and "classic" JARs.
@@ -41,28 +41,40 @@ the depended-on classes run with their proper names and integrity.
 
 Jython 2 is unlikely ever fully to embrace
 the Java module system for its own use.
+(Jython 3 should.)
 It can, however, play nicely within a modular project.
+
+[This tutorial on dev.java](https://dev.java/learn/modules) is very helpful
+if you are still getting to grips with the detail of modules.
 
 Packages from the slim JAR appear in the automatic module `org.python.jython2`.
 
-*Most* of the dependency JARs also present as modules
+*Most* of the dependency JARs also present themselves as modules
 (explicit or automatic)
-and will be found and resolved by the JVM during start-up.
-Some modules are not resolved because
-their packages are referenced by name, dynamically.
-Even though a JAR may be placed on the module path by the build,
-the JVM will not read it if it is not explicitly a dependency.
+and will be found and added to the "module graph"
+by the JVM during start-up.
+
+Some modules are not added to the graph because
+their packages are referenced dynamically.
+The declared dependencies are added to the module path by the build,
+but surprisingly this does not get them into the module graph.
 To make available the full set available we use the option
 `--add-modules ALL-MODULE-PATH` on the Java command.
 
-The project shows how to take care of this in the build script. 
+The project shows how to take care of this in the build script `build.gradle`.
+By varying the JVM options there,
+you can see module resolution take place (add the `--show-module-resolution` option),
+and watch it fail (suppress the `--add-modules`). 
+
 
 ## How to Build the Project
 
 Clone this repository onto your own machine.
+Open a shell in the root of the project.
+I'm using Windows PowerShell here, but the Unix equivalent is easy to work out.
 
 The application is in a sub-project called `app`.
-YOu can build it in the root of the project with:
+You can build it from the root of the project with:
 
 ```
 PS demo-jython-slim-gradle> .\gradlew --console=plain  app:install
@@ -76,8 +88,7 @@ PS demo-jython-slim-gradle> .\gradlew --console=plain  app:install
 BUILD SUCCESSFUL in 11s
 4 actionable tasks: 4 executed
 ```
-(I'm using Windows PowerShell here, but the Unix equivalent is easy to work out.
-Also, I force Gradle to use a plain console because I find the colours unreadable.)
+(I force Gradle to use a plain console because I find the colours unreadable.)
 
 The command has compiled the program,
 obtained the Jython slim JAR and all its dependencies,
@@ -86,7 +97,7 @@ and created a launch script you can run with:
 PS demo-jython-slim-gradle> .\app\build\install\app\bin\app
 42
 ```
-You can run the application direct;y with Gradle:
+You can run the application directly with Gradle:
 ```
 PS demo-jython-slim-gradle> .\gradlew --console=plain  app:run
 ...
@@ -100,7 +111,7 @@ You can also ask for the contents as a zip or tar file.
 The install directory has two subdirectories.
 `bin` as we've seen contains the launch cript.
 `lib` contains the application JAR, the Jython JAR,
-and everything they depend on (that the JDK doesn't supply).
+and everything they depend on that the JDK doesn't supply.
 
 
 

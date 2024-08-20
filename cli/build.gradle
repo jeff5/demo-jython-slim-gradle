@@ -1,0 +1,32 @@
+// Run the Jython CLI as an application importing the jython-slim JAR.
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.python:jython-slim:2.7.4rc1'
+}
+
+application {
+    mainModule = 'org.python.jython2'
+    mainClass = 'org.python.util.jython'
+
+	applicationDefaultJvmArgs = [
+		// This can be useful in debugging:
+		//'--show-module-resolution',
+		'--add-modules', 'ALL-MODULE-PATH'
+	]
+}
+
+startScripts {
+	defaultJvmOpts = [
+		// This can be useful in debugging:
+		//'--show-module-resolution',
+		'--add-modules', 'ALL-MODULE-PATH'
+	]
+}

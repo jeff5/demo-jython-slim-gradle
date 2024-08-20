@@ -74,6 +74,8 @@ Clone this repository onto your own machine.
 Open a shell in the root of the project.
 I'm using Windows PowerShell here, but the Unix equivalent is easy to work out.
 
+### Simple Application
+
 The application is in a sub-project called `app`.
 You can build it from the root of the project with:
 
@@ -115,5 +117,23 @@ The install directory has two subdirectories.
 `lib` contains the application JAR, the Jython JAR,
 and everything they depend on that the JDK doesn't supply.
 
+### Run the Jython CLI
 
+The sub-project called `cli` has no code of its own.
+It simply names the Jython command as its main class.
+You can build and run it from the root of the project with:
+```
+PS demo-jython-slim-gradle> .\gradlew --console=plain  cli:install
+> Task :cli:compileJava NO-SOURCE
+> Task :cli:processResources NO-SOURCE
+> Task :cli:classes UP-TO-DATE
+> Task :cli:jar
+> Task :cli:startScripts
+> Task :cli:installDist
+
+BUILD SUCCESSFUL in 12s
+3 actionable tasks: 3 executed
+PS demo-jython-slim-gradle> .\cli\build\install\cli\bin\cli -V
+Jython 2.7.4rc1
+```
 

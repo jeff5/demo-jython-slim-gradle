@@ -4,12 +4,11 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.python:jython-slim:2.7.4rc1'
+    implementation 'org.python:jython-slim:2.7.4'
 }
 
 application {

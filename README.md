@@ -109,7 +109,8 @@ PS demo-jython-slim-gradle> .\gradlew --console=plain  app:run
 42
 ```
 but the idea of the `install` directory is that you can take its contents
-and "install" them elsewhere to run any time you need 42 printed on the console.
+and "install" them elsewhere,
+to run any time you need 42 printed on the console, very slowly.
 You can also ask for the contents as a zip or tar file.
 
 The install directory has two subdirectories.
@@ -133,7 +134,10 @@ PS demo-jython-slim-gradle> .\gradlew --console=plain  cli:install
 
 BUILD SUCCESSFUL in 12s
 3 actionable tasks: 3 executed
-PS demo-jython-slim-gradle> .\cli\build\install\cli\bin\cli -V
-Jython 2.7.4rc1
+PS demo-jython-slim-gradle> .\cli\build\install\cli\bin\cli
+Jython 2.7.4 (tags/v2.7.4:3f256f4a7, Aug 18 2024, 16:49:39)
+[Java HotSpot(TM) 64-Bit Server VM (Oracle Corporation)] on java17.0.7
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
 ```
 
